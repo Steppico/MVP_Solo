@@ -1,0 +1,8 @@
+.App {
+  text-align: center;
+}
+
+.Map__block {
+  display: inline-flex;
+  margin: 0 auto;
+}

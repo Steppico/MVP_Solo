@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import { getData } from "../getData";
 import { connect } from "react-redux";
-import ReactMapboxGl, { ZoomControl, Marker, Layer, Feature } from "react-mapbox-gl";
-import "../App.css";
+import ReactMapboxGl, { ZoomControl, Marker } from "react-mapbox-gl";
+import "../styles/App.css";
 const gmap_marker = require("../icons/gmap_marker.svg");
 
 
@@ -17,12 +17,12 @@ class SpaceMap extends Component {
   }
   render() {
     return (
-        <>
+        <div className = "Map__block">
           <Map
             style={"mapbox://styles/mapbox/streets-v10"}
             containerStyle={{
               height: "500px",
-              width: "800px",
+              width: "1200px",
               margin: "5px",
               borderRadius: "10px",
               border: "1px solid rgb(0,0,0)"
@@ -42,14 +42,7 @@ class SpaceMap extends Component {
         )    
       }): ""}
           </Map>
-          <button
-            onClick={() => {
-              this.props.getMarkers(this.props.prevLaunches);
-            }}
-          >
-            Show launches
-          </button>
-        </>
+        </div>
     );
   }
 }

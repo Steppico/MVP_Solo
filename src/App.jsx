@@ -1,15 +1,18 @@
 import React from "react";
-import "./App.css";
+import "../src/styles/App.css";
 import { connect } from "react-redux";
 import { Component } from "react";
 import Map from "./components/Map";
+import InfoHome from "./components/InfoHome";
 
 class App extends Component {
   render() {
     return (
       <div className="App">
         <div>
-          <Map id="map" style={`z-index: 9`} />
+          <h1>LIFTOFF</h1>
+          <Map className="Map__component" style={`z-index: 9`} />
+          <InfoHome />
         </div>
       </div>
     );

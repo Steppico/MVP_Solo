@@ -10,7 +10,10 @@ class Launches extends Component {
   };
 
   eventHandler = e => {
-    this.props.getAgencyMarker(e.target.value);
+    if (!this.props[e.target.value]) this.props.getAgencyMarker(e.target.value);
+    else {
+      this.props.liftData(this.props[e.target.value], e.target.value);
+    }
   };
 
   render() {
@@ -35,12 +38,20 @@ class Launches extends Component {
             See all launches
           </button>
           <button
-            class="button__clear"
+            className="button__clear"
             onClick={() => {
               this.props.clearMap();
             }}
           >
             Clear Map
+          </button>
+          <button
+            className="button__stats"
+            onClick={() => {
+              this.props.showStats();
+            }}
+          >
+            Show Stats
           </button>
         </div>
       </>
@@ -56,11 +67,15 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     getAgencyMarker: async agency => {
-      const reply = await getSpecs({ search: agency });
-      dispatch({
-        type: "GET_AGENCY",
-        reply
-      });
+      try {
+        const reply = await getSpecs({ search: agency });
+        dispatch({
+          type: "GET_AGENCY",
+          reply
+        });
+      } catch (err) {
+        return new Error("Error", err);
+      }
     },
     launchData: async () => {
       await getData().then(res =>
@@ -73,6 +88,17 @@ const mapDispatchToProps = dispatch => {
     clearMap: () => {
       dispatch({
         type: "CLEAR_MAP"
+      });
+    },
+    showStats: () => {
+      dispatch({
+        type: "SHOW_STATS"
+      });
+    },
+    liftData: (agency, mission) => {
+      dispatch({
+        type: "GET_THE_AGENCY",
+        payload: { agency, mission }
       });
     }
   };

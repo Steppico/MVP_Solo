@@ -1,0 +1,13 @@
+.result__mission {
+  background-color: rgb(230, 230, 230);
+  border: 1px solid rgb(0, 0, 0);
+  border-radius: 5px;
+  width: 500px;
+  margin: 0 auto;
+  margin-bottom: 5px;
+}
+
+img {
+  width: 50px;
+  height: auto;
+}

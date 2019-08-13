@@ -42,7 +42,6 @@ const mapDispatchToProps = dispatch => {
   return {
     getAgencyMarker: async agency => {
       const reply = await getSpecs({ search: agency });
-      console.log("replyplyply", reply);
       dispatch({
         type: "GET_AGENCY",
         reply

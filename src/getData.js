@@ -1,6 +1,5 @@
 require("dotenv").config();
 const axios = require("axios");
-const url = process.env.APIURL;
 
 export async function getData() {
   let response = await axios({
@@ -25,5 +24,5 @@ export async function getSpecs(query) {
   });
   let answerToQuery = await response.data;
 
-  return { answerToQuery };
+  return { answerToQuery, query };
 }

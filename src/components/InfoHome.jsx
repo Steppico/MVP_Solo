@@ -1,22 +1,27 @@
-import React,{ Component } from "react";
+import React, { Component } from "react";
 import { connect } from "react-redux";
-import Launches from "./Launches"
+import Launches from "./Launches";
+import Results from "./Results";
 
 class InfoHome extends Component {
   render() {
     return (
       <>
-      <Launches />
+        <Launches />
+        <Results />
       </>
-    )
+    );
   }
 }
 
 const mapStateToProps = state => {
   return {
     ...state
-  }
-}
-const mapDispatchToProps = dispatch => {}
+  };
+};
+const mapDispatchToProps = dispatch => {};
 
-export default connect(mapStateToProps, mapDispatchToProps)(InfoHome)
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(InfoHome);

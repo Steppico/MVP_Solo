@@ -1,5 +1,6 @@
 const defaultState = {
   agencies: ["Nasa", "Jaxa", "Roscosmos", "ESA", "SpaceX"],
+  selectedAgency: null,
   showMarker: null,
   prevLaunches: []
 };
@@ -13,9 +14,12 @@ const reducer = (state = defaultState, action) => {
       };
     }
     case "GET_AGENCY": {
-      console.log("I AM HERE!", action);
       return {
-        ...state
+        ...state,
+        selectedAgency:
+          action.reply.query.search.slice(0, 1).toUpperCase() +
+          action.reply.query.search.slice(1).toLowerCase(),
+        prevLaunches: action.reply.answerToQuery.results
       };
     }
     default:

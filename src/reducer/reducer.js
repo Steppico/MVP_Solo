@@ -10,7 +10,6 @@ const defaultState = {
 const reducer = (state = defaultState, action) => {
   switch (action.type) {
     case "SET_STATE": {
-      console.log(action.action.prevLaunches.results);
       return {
         prevLaunches: action.action.prevLaunches.results
       };

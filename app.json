@@ -1,0 +1,16 @@
+{
+  "addons": [
+
+  ],
+  "buildpacks": [
+
+  ],
+  "env": {
+  },
+  "formation": {
+  },
+  "name": "MVP_Solo",
+  "scripts": {
+  },
+  "stack": "heroku-18"
+}

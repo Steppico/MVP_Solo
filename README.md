@@ -2,8 +2,6 @@
 
 An MVP app I wrote while a student @ Code Chrysalis
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
-
 ## Available Scripts
 
 In the project directory, you can run:

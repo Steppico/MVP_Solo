@@ -13,6 +13,14 @@ const reducer = (state = defaultState, action) => {
         prevLaunches: action.action.prevLaunches.results
       };
     }
+    case "CLEAR_MAP": {
+      return {
+        ...state,
+        selectedAgency: null,
+        showMarker: null,
+        prevLaunches: null
+      };
+    }
     case "GET_AGENCY": {
       return {
         ...state,

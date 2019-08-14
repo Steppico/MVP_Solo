@@ -3,7 +3,9 @@ import "../src/styles/App.css";
 import { connect } from "react-redux";
 import { Component } from "react";
 import Map from "./components/Map";
-import InfoHome from "./components/InfoHome";
+import Launches from "./components/Launches";
+import Results from "./components/Results";
+import Stats from "./components/Stats";
 
 class App extends Component {
   render() {
@@ -11,8 +13,10 @@ class App extends Component {
       <div className="App">
         <div>
           <h1>LIFTOFF</h1>
+          <Launches />
           <Map className="Map__component" style={`z-index: 9`} />
-          <InfoHome />
+          {this.props.results === true ? <Results /> : ""}
+          {this.props.showStats === true ? <Stats /> : ""}
         </div>
       </div>
     );

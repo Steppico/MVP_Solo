@@ -1,5 +1,15 @@
-.result__mission {
+.results__container {
+  display: block;
   background-color: rgb(230, 230, 230);
+  border: 1px solid rgb(230, 230, 230);
+  border-radius: 5px;
+  margin: 0 auto;
+  margin-top: 10px;
+  width: 70%;
+}
+
+.result__mission {
+  background-color: rgb(255, 255, 255);
   border: 1px solid rgb(0, 0, 0);
   border-radius: 5px;
   width: 500px;

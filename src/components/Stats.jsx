@@ -1,7 +1,9 @@
 import React from "react";
 import { connect } from "react-redux";
-import { Pie } from "react-chartjs-2";
+import { Pie, defaults } from "react-chartjs-2";
 import "../styles/stats.css";
+
+defaults.global.responsive = false;
 
 const Stats = props => {
   const countFunc = (launches, method) => {
@@ -22,7 +24,6 @@ const Stats = props => {
     );
     const result = { country: "", count: 0 };
     for (const country in countryHash) {
-      console.log("cococontry", countryHash[country]);
       if (countryHash[country] > result.count) {
         result.country = country;
         result.count = countryHash[country];
@@ -36,42 +37,48 @@ const Stats = props => {
       <div className="block__stats">
         {props.selectedAgency ? (
           <>
-            <h1>Stats for: {props.selectedAgency}</h1>
+            <h1 className="results__text">Stats for: {props.selectedAgency}</h1>
             <div className="block__numberLaunches">
-              <div className="block__launch__num">
+              <div className="block__launch__num left">
                 Number of launches:{" "}
-                <div className="launch__num">
+                <div className="right">
                   {props[props.selectedAgency.toLowerCase()].length}
                 </div>
               </div>
-              <div className="block__launch__fail">
+              <div className="block__launch__fail left">
                 Failures:{" "}
-                <div className="launch__fail">
+                <div className="right">
                   {countFunc(
                     props[props.selectedAgency.toLowerCase()],
                     "Failure"
                   )}
                 </div>
               </div>
-              <div className="block__launch__win">
+              <div className="block__launch__win left">
                 Successes:{" "}
-                <div className="launch__win">
+                <div className="right">
                   {countFunc(
                     props[props.selectedAgency.toLowerCase()],
                     "Success"
                   )}
                 </div>
               </div>
-              <div className="block__successfail__ratio">
+              <div className="block__successfail__ratio left">
                 Success/Fail ratio:{" "}
-                <div className="successfail__ratio">
-                  {`${Math.ceil(props.Success / props.Failure)}/1`}
+                <div className="right">
+                  {Math.ceil(props.Success / props.Failure) === Infinity
+                    ? "100%"
+                    : `${Math.ceil(props.Success / props.Failure)}/1`}
+                </div>
+              </div>
+              <div className="block__preferredlaunch__country left">
+                Preferred Launch Country:
+                <div className="right">
+                  {prefCountry(props[props.selectedAgency.toLowerCase()])}
                 </div>
               </div>
               <div className="block__pie__chart">
-                On a graph:
                 <Pie
-                  className="pie__chart"
                   data={{
                     labels: ["Failures", "Successes"],
                     datasets: [
@@ -81,13 +88,12 @@ const Stats = props => {
                       }
                     ]
                   }}
+                  options={{
+                    maintainAspectRatio: false
+                  }}
+                  width={250}
+                  height={250}
                 />
-              </div>
-              <div className="block__preferredlaunch__country">
-                Preferred Launch Country:
-                <div className="preferredlaunch__country">
-                  {prefCountry(props[props.selectedAgency.toLowerCase()])}
-                </div>
               </div>
             </div>
           </>

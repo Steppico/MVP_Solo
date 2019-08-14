@@ -4,6 +4,12 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: rgba(0, 10, 0, 0.8);
+}
+
+h1 {
+  color: white;
+  font-size: 50px;
 }
 
 code {

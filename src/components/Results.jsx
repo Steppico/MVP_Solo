@@ -8,14 +8,14 @@ import "../styles/results.css";
 const Results = props => {
   const spawnResults = () => {
     return (
-      <div>
+      <div className="results__container">
         <div>name: {props.selectedAgency}</div>
         <Options />
         {props.filteredResults.map((launch, index) => {
           return (
             <div className="result__mission">
               <p>
-                Mission #{index}: {launch.name}
+                Mission #{index + 1}: {launch.name}
               </p>
               {launch.net ? <p>Mission date: {launch.net}</p> : ""}
               {launch.mission ? (

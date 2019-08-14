@@ -11,7 +11,9 @@ const defaultState = {
   prevLaunches: [],
   filteredResults: [],
   results: false,
-  showStats: false
+  showStats: false,
+  centerMap: [137.2529, 38.7048],
+  zoom: [4.2]
 };
 
 const reducer = (state = defaultState, action) => {

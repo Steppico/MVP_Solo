@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import { getData } from "../getData";
 import { connect } from "react-redux";
 import ReactMapboxGl, { ZoomControl, Marker } from "react-mapbox-gl";
 import "../styles/App.css";
@@ -15,7 +14,7 @@ class SpaceMap extends Component {
     return (
       <div className="Map__block">
         <Map
-          style={"mapbox://styles/mapbox/streets-v10"}
+          style={"mapbox://styles/mapbox/light-v10"}
           containerStyle={{
             height: "500px",
             width: "1200px",
@@ -23,8 +22,8 @@ class SpaceMap extends Component {
             borderRadius: "10px",
             border: "1px solid rgb(0,0,0)"
           }}
-          center={[137.2529, 38.7048]}
-          zoom={[4.2]}
+          center={this.props.centerMap}
+          zoom={this.props.zoom}
         >
           <ZoomControl />
           {this.props.prevLaunches

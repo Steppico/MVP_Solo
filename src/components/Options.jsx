@@ -11,7 +11,7 @@ const Options = props => {
   };
   return (
     <>
-      <form class="options__radio_button">
+      <form className="options__radio_button">
         <input
           type="radio"
           name="opt"

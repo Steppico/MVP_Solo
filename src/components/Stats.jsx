@@ -9,7 +9,11 @@ const Stats = props => {
   const countFunc = (launches, method) => {
     let count = 0;
     launches.filter(launch => {
-      if (launch.status.name === method) return count++;
+      if (launch.status.name === method) {
+        return count++;
+      } else {
+        return null;
+      }
     });
     props.storeVariable(count, method);
     return count;

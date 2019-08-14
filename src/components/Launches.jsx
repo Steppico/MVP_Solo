@@ -10,7 +10,8 @@ class Launches extends Component {
   };
 
   eventHandler = e => {
-    if (!this.props[e.target.value]) this.props.getAgencyMarker(e.target.value);
+    if (!this.props[e.target.value])
+      this.props.getAgencyMarker(e.target.value, this.props.waitLoad);
     else {
       this.props.liftData(this.props[e.target.value], e.target.value);
     }
@@ -66,12 +67,12 @@ const mapStateToProps = state => {
 };
 const mapDispatchToProps = dispatch => {
   return {
-    getAgencyMarker: async agency => {
+    getAgencyMarker: async (agency, waitLoad) => {
       try {
         const reply = await getSpecs({ search: agency });
         dispatch({
           type: "GET_AGENCY",
-          reply
+          payload: { reply, waitLoad }
         });
       } catch (err) {
         return new Error("Error", err);

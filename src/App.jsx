@@ -13,7 +13,8 @@ class App extends Component {
       <div className="App">
         <div>
           <h1>LIFTOFF</h1>
-          <Launches />
+          {/* for now, Loading does nothing and won't appear. */}
+          {this.props.waitLoad === false ? <Launches /> : <p>Loading...</p>}
           <Map className="Map__component" style={`z-index: 9`} />
           {this.props.results === true ? <Results /> : ""}
           {this.props.showStats === true ? <Stats /> : ""}
@@ -29,9 +30,4 @@ const mapStateToProps = state => {
   };
 };
 
-const mapDispatchToProps = dispatch => {};
-
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(App);
+export default connect(mapStateToProps)(App);

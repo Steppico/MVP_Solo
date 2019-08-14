@@ -8,15 +8,18 @@
   width: 70%;
 }
 
+.block__numberLaunches {
+  margin: 0 auto;
+}
+
 .results__text {
   color: white;
   text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+  margin: 0 auto;
 }
 
 .left {
-  width: 500px;
   padding: 1px;
-  position: relative;
   margin-left: 10px;
 }
 
@@ -24,9 +27,5 @@
   background-color: white;
   border: solid 1px rgb(0, 0, 0);
   border-radius: 5px;
-  margin: 0 auto;
-}
-
-.bloc__pie__chart {
   margin: 0 auto;
 }

@@ -13,20 +13,25 @@ const defaultState = {
   results: false,
   showStats: false,
   centerMap: [137.2529, 38.7048],
-  zoom: [4.2]
+  zoom: [4.2],
+  waitLoad: false
 };
 
 const reducer = (state = defaultState, action) => {
   switch (action.type) {
     case "SET_STATE": {
+      const result = action.action.prevLaunches.results;
+
       return {
         ...state,
-        prevLaunches: action.action.prevLaunches.results,
-        filteredResults: action.action.prevLaunches.results
+        prevLaunches: result,
+        filteredResults: result
       };
     }
     case "STORE_VAR": {
-      state[action.payload.method] = action.payload.count;
+      const country = action.payload;
+      state[country.method] = country.count;
+
       return { ...state };
     }
     case "CLEAR_MAP": {
@@ -36,28 +41,34 @@ const reducer = (state = defaultState, action) => {
         selectedAgency: null,
         showMarker: null,
         prevLaunches: null,
-        filteredResults: []
+        filteredResults: [],
+        centerMap: [137.2529, 38.7048],
+        zoom: [4.2]
       };
     }
     case "GET_AGENCY": {
-      state[action.reply.query.search] = action.reply.answerToQuery.results;
+      const agency = action.payload.reply.query.search;
+      const parseAgency = action.payload.reply.answerToQuery.results;
+      state[agency] = parseAgency;
+
       return {
         ...state,
         selectedAgency:
-          action.reply.query.search.slice(0, 1).toUpperCase() +
-          action.reply.query.search.slice(1).toLowerCase(),
-        prevLaunches: action.reply.answerToQuery.results,
-        filteredResults: action.reply.answerToQuery.results,
+          agency.slice(0, 1).toUpperCase() + agency.slice(1).toLowerCase(),
+        prevLaunches: parseAgency,
+        filteredResults: parseAgency,
         results: true
       };
     }
     case "GET_THE_AGENCY": {
+      const mission = action.payload.mission;
+      const agency = action.payload.agency;
+
       return {
         ...state,
         selectedAgency:
-          action.payload.mission.slice(0, 1).toUpperCase() +
-          action.payload.mission.slice(1).toLowerCase(),
-        prevLaunches: action.payload.agency
+          mission.slice(0, 1).toUpperCase() + mission.slice(1).toLowerCase(),
+        prevLaunches: agency
       };
     }
     case "SET_FILTER": {
@@ -71,6 +82,9 @@ const reducer = (state = defaultState, action) => {
     }
     case "SHOW_STATS": {
       return { ...state, results: false, showStats: true };
+    }
+    case "UPDATE_VIEW": {
+      return { ...state, centerMap: action.coord, zoom: [10] };
     }
     default:
       return state;

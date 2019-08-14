@@ -33,6 +33,12 @@ class SpaceMap extends Component {
                     coordinates={[marker.pad.longitude, marker.pad.latitude]}
                     anchor="bottom"
                     key={marker.id}
+                    onClick={() => {
+                      this.props.magnetify([
+                        marker.pad.longitude,
+                        marker.pad.latitude
+                      ]);
+                    }}
                   >
                     <img src={gmap_marker} alt={marker.name} />
                   </Marker>
@@ -45,7 +51,16 @@ class SpaceMap extends Component {
   }
 }
 
-const mapDispatchToProps = dispatch => {};
+const mapDispatchToProps = dispatch => {
+  return {
+    magnetify: coord => {
+      dispatch({
+        type: "UPDATE_VIEW",
+        coord
+      });
+    }
+  };
+};
 
 const mapStateToProps = state => {
   return { ...state };
